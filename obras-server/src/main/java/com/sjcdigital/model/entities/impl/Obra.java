@@ -1,47 +1,65 @@
-package com.sjcdigital.obras.model.documents;
+package com.sjcdigital.model.entities.impl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-public class Obra {
+import com.sjcdigital.model.entities.DefaultEntity;
 
-	private Integer exercicio;
-	private Integer semestre;
+@Entity
+public class Obra extends DefaultEntity {
+
+	private static final long serialVersionUID = 1L;
+
+	@ManyToOne
+	@JoinColumn(name = "cidade_fk", nullable = false)
+	private Cidade cidade;
+	
+	private String exercicio;
+	private String semestre;
 	private String funcaoDeGoverno;
 	private String orgaoContratante;
+	
+	@Column(length = 500)
 	private String destinacaoObra;
+	
+	@Column(length = 500)
 	private String enderecoObra;
+	
 	private String pPA;
 	private String lDO;
 	private String atendimentoPopulacao;
-	private BigDecimal valorInicialPrevisto;
-	private BigDecimal valorTotalContratado;
+	private String valorInicialPrevisto;
+	private String valorTotalContratado;
 	private String nomeEmpresaContratada;
-	private LocalDate dataInicioObra;
-	private BigDecimal valorTotalTermosAditivos;
-	private BigDecimal reajuste;
-	private BigDecimal nivelExecuçãoFisica;
-	private BigDecimal valorTotalPago;
-	private LocalDate dataPrevistaConclusao;
+	private String dataInicioObra;
+	private String valorTotalTermosAditivos;
+	private String reajuste;
+	private String nivelExecuçãoFisica;
+	private String valorTotalPago;
+	private String dataPrevistaConclusao;
 	private String situacaoObra;
-	private LocalDate dataRecebimentoDefinitivo;
+	private String dataRecebimentoDefinitivo;
 	private String nomeServidorResponsavel;
-	private String observacoes;
+	
+	private Integer obraUtil = 0;
+	private Integer obraInutil = 0;
 
-	public Integer getExercicio() {
+	public String getExercicio() {
 		return exercicio;
 	}
 
 	public void setExercicio(String exercicio) {
-		this.exercicio = new Integer(exercicio);
+		this.exercicio = exercicio;
 	}
 
-	public Integer getSemestre() {
+	public String getSemestre() {
 		return semestre;
 	}
 
 	public void setSemestre(String semestre) {
-		this.semestre = new Integer(semestre);
+		this.semestre = semestre;
 	}
 
 	public String getFuncaoDeGoverno() {
@@ -100,19 +118,19 @@ public class Obra {
 		this.atendimentoPopulacao = atendimentoPopulacao;
 	}
 
-	public BigDecimal getValorInicialPrevisto() {
+	public String getValorInicialPrevisto() {
 		return valorInicialPrevisto;
 	}
 
-	public void setValorInicialPrevisto(BigDecimal valorInicialPrevisto) {
+	public void setValorInicialPrevisto(String valorInicialPrevisto) {
 		this.valorInicialPrevisto = valorInicialPrevisto;
 	}
 
-	public BigDecimal getValorTotalContratado() {
+	public String getValorTotalContratado() {
 		return valorTotalContratado;
 	}
 
-	public void setValorTotalContratado(BigDecimal valorTotalContratado) {
+	public void setValorTotalContratado(String valorTotalContratado) {
 		this.valorTotalContratado = valorTotalContratado;
 	}
 
@@ -124,51 +142,51 @@ public class Obra {
 		this.nomeEmpresaContratada = nomeEmpresaContratada;
 	}
 
-	public LocalDate getDataInicioObra() {
+	public String getDataInicioObra() {
 		return dataInicioObra;
 	}
 
-	public void setDataInicioObra(LocalDate dataInicioObra) {
+	public void setDataInicioObra(String dataInicioObra) {
 		this.dataInicioObra = dataInicioObra;
 	}
 
-	public BigDecimal getValorTotalTermosAditivos() {
+	public String getValorTotalTermosAditivos() {
 		return valorTotalTermosAditivos;
 	}
 
-	public void setValorTotalTermosAditivos(BigDecimal valorTotalTermosAditivos) {
+	public void setValorTotalTermosAditivos(String valorTotalTermosAditivos) {
 		this.valorTotalTermosAditivos = valorTotalTermosAditivos;
 	}
 
-	public BigDecimal getReajuste() {
+	public String getReajuste() {
 		return reajuste;
 	}
 
-	public void setReajuste(BigDecimal reajuste) {
+	public void setReajuste(String reajuste) {
 		this.reajuste = reajuste;
 	}
 
-	public BigDecimal getNivelExecuçãoFisica() {
+	public String getNivelExecuçãoFisica() {
 		return nivelExecuçãoFisica;
 	}
 
-	public void setNivelExecuçãoFisica(BigDecimal nivelExecuçãoFisica) {
+	public void setNivelExecuçãoFisica(String nivelExecuçãoFisica) {
 		this.nivelExecuçãoFisica = nivelExecuçãoFisica;
 	}
 
-	public BigDecimal getValorTotalPago() {
+	public String getValorTotalPago() {
 		return valorTotalPago;
 	}
 
-	public void setValorTotalPago(BigDecimal valorTotalPago) {
+	public void setValorTotalPago(String valorTotalPago) {
 		this.valorTotalPago = valorTotalPago;
 	}
 
-	public LocalDate getDataPrevistaConclusao() {
+	public String getDataPrevistaConclusao() {
 		return dataPrevistaConclusao;
 	}
 
-	public void setDataPrevistaConclusao(LocalDate dataPrevistaConclusao) {
+	public void setDataPrevistaConclusao(String dataPrevistaConclusao) {
 		this.dataPrevistaConclusao = dataPrevistaConclusao;
 	}
 
@@ -180,11 +198,11 @@ public class Obra {
 		this.situacaoObra = situacaoObra;
 	}
 
-	public LocalDate getDataRecebimentoDefinitivo() {
+	public String getDataRecebimentoDefinitivo() {
 		return dataRecebimentoDefinitivo;
 	}
 
-	public void setDataRecebimentoDefinitivo(LocalDate dataRecebimentoDefinitivo) {
+	public void setDataRecebimentoDefinitivo(String dataRecebimentoDefinitivo) {
 		this.dataRecebimentoDefinitivo = dataRecebimentoDefinitivo;
 	}
 
@@ -196,12 +214,28 @@ public class Obra {
 		this.nomeServidorResponsavel = nomeServidorResponsavel;
 	}
 
-	public String getObservacoes() {
-		return observacoes;
+	public Cidade getCidade() {
+		return cidade;
 	}
 
-	public void setObservacoes(String observacoes) {
-		this.observacoes = observacoes;
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
+
+	public Integer getObraUtil() {
+		return obraUtil;
+	}
+
+	public void setObraUtil(Integer obraUtil) {
+		this.obraUtil = obraUtil;
+	}
+
+	public Integer getObraInutil() {
+		return obraInutil;
+	}
+
+	public void setObraInutil(Integer obraInutil) {
+		this.obraInutil = obraInutil;
 	}
 
 }
