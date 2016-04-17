@@ -36,6 +36,11 @@ public class CargaBase {
 	@PostConstruct
 	public void carregaDados() {
 		
+		//TODO: Melhorar isso depois
+		if(cidades.todos().size() > 0) {
+			return;
+		}
+		
 		logger.info("Iniciando carga ...");
 		
 		try {

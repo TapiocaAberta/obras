@@ -38,7 +38,7 @@ public class DefaultRepository<T> {
 		cq.select(cq.from(tipo));
 		return (List<T>) em.createQuery(cq).getResultList();
 	}
-
+	
 	public T comId(long id) {
 		return em.find(tipo, id);
 	}

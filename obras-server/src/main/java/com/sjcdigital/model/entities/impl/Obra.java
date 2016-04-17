@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sjcdigital.model.entities.DefaultEntity;
 
 @Entity
@@ -13,6 +14,7 @@ public class Obra extends DefaultEntity {
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "cidade_fk", nullable = false)
 	private Cidade cidade;
 	
