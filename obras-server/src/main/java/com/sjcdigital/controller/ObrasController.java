@@ -27,14 +27,15 @@ public class ObrasController {
 	}
 
 	@GET
+	@Path("/{id}")
+	public Response comId(@PathParam("id") Long id) {
+		return Response.ok(RestUtils.lanca404SeNulo(obras.comId(id), id)).build();
+	}
+	
+	@GET
 	@Path("/cidade/{id}")
 	public Response porCidade(@PathParam("id") Long id) {
 		return Response.ok(RestUtils.lanca404SeNulo(obras.obrasDaCidade(id), "Nenhuma obra encontrada")).build();
 	}
 
-	@GET
-	@Path("/{id}")
-	public Response comId(@PathParam("id") Long id) {
-		return Response.ok(RestUtils.lanca404SeNulo(obras.comId(id), id)).build();
-	}
 }
