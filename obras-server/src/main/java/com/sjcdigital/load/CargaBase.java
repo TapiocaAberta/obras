@@ -89,27 +89,27 @@ public class CargaBase {
 		Obra obra = new Obra();
 		
 		obra.setCidade(cidade);
-		obra.setExercicio(linha[1]);
-		obra.setSemestre(linha[2]);
-		obra.setFuncaoDeGoverno(linha[3]);
-		obra.setOrgaoContratante(linha[4]);
-		obra.setDestinacaoObra(linha[5]);
-		obra.setEnderecoObra(linha[6]);
-		obra.setpPA(linha[7]);
-		obra.setlDO(linha[8]);
-		obra.setAtendimentoPopulacao(linha[9]);
-		obra.setValorInicialPrevisto(linha[10]);
-		obra.setValorTotalContratado(linha[11]);
-		obra.setNomeEmpresaContratada(linha[12]);
-		obra.setDataInicioObra(linha[13]);
-		obra.setValorTotalTermosAditivos(linha[14]);
-		obra.setReajuste(linha[15]);
-		obra.setNivelExecuçãoFisica(linha[16]);
-		obra.setValorTotalPago(linha[17]);
-		obra.setDataPrevistaConclusao(linha[18]);
-		obra.setSituacaoObra(linha[19]);
-		obra.setDataRecebimentoDefinitivo(linha[20]);
-		obra.setNomeServidorResponsavel(linha[21]);
+		obra.setExercicio(linha[1].trim());
+		obra.setSemestre(linha[2].trim());
+		obra.setFuncaoDeGoverno(linha[3].trim());
+		obra.setOrgaoContratante(linha[4].trim());
+		obra.setDestinacaoObra(linha[5].trim());
+		obra.setEnderecoObra(linha[6].trim());
+		obra.setpPA(linha[7].trim());
+		obra.setlDO(linha[8].trim());
+		obra.setAtendimentoPopulacao(linha[9].trim());
+		obra.setValorInicialPrevisto(linha[10].trim());
+		obra.setValorTotalContratado(linha[11].trim());
+		obra.setNomeEmpresaContratada(linha[12].trim());
+		obra.setDataInicioObra(linha[13].trim());
+		obra.setValorTotalTermosAditivos(linha[14].trim());
+		obra.setReajuste(linha[15].trim());
+		obra.setNivelExecucaoFisica(linha[16].trim());
+		obra.setValorTotalPago(linha[17].trim());
+		obra.setDataPrevistaConclusao(linha[18].trim());
+		obra.setSituacaoObra(linha[19].trim());
+		obra.setDataRecebimentoDefinitivo(linha[20].trim());
+		obra.setNomeServidorResponsavel(linha[21].trim());
 		
 		return obra;
 	}

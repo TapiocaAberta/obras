@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 
 /**
@@ -38,6 +39,16 @@ public class DefaultRepository<T> {
 		cq.select(cq.from(tipo));
 		return (List<T>) em.createQuery(cq).getResultList();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<T> todosPaginado(int total, int pg) {
+		CriteriaQuery<Object> cq = em.getCriteriaBuilder().createQuery();
+		cq.select(cq.from(tipo));
+		Query busca = em.createQuery(cq);
+		busca.setFirstResult(pg * total);
+		busca.setMaxResults(total);
+		return (List<T>) busca.getResultList();
+	}	
 	
 	public T comId(long id) {
 		return em.find(tipo, id);

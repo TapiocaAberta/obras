@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sjcdigital.model.entities.DefaultEntity;
 import com.sun.istack.NotNull;
 
@@ -20,6 +21,7 @@ public class Cidade extends DefaultEntity {
 	@Column(nullable = false)
 	private String nome;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "cidade", fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Collection<Obra> obras;
 

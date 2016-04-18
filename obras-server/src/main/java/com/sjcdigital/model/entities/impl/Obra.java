@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sjcdigital.model.entities.DefaultEntity;
 
 @Entity
@@ -14,7 +13,6 @@ public class Obra extends DefaultEntity {
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
-	@JsonIgnore
 	@JoinColumn(name = "cidade_fk", nullable = false)
 	private Cidade cidade;
 	
@@ -38,7 +36,7 @@ public class Obra extends DefaultEntity {
 	private String dataInicioObra;
 	private String valorTotalTermosAditivos;
 	private String reajuste;
-	private String nivelExecuçãoFisica;
+	private String nivelExecucaoFisica;
 	private String valorTotalPago;
 	private String dataPrevistaConclusao;
 	private String situacaoObra;
@@ -168,12 +166,12 @@ public class Obra extends DefaultEntity {
 		this.reajuste = reajuste;
 	}
 
-	public String getNivelExecuçãoFisica() {
-		return nivelExecuçãoFisica;
+	public String getNivelExecucaoFisica() {
+		return nivelExecucaoFisica;
 	}
 
-	public void setNivelExecuçãoFisica(String nivelExecuçãoFisica) {
-		this.nivelExecuçãoFisica = nivelExecuçãoFisica;
+	public void setNivelExecucaoFisica(String nivelExecuçãoFisica) {
+		this.nivelExecucaoFisica = nivelExecuçãoFisica;
 	}
 
 	public String getValorTotalPago() {
