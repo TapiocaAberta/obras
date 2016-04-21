@@ -11,9 +11,11 @@ import com.sjcdigital.model.entities.DefaultEntity;
 public class RestUtils {
 
 	public static <T> T lanca404SeNulo(T object, String message) {
+		
 		if (object == null) {
 			throw new WebApplicationException(Response.status(NOT_FOUND).entity(message).build());
 		}
+		
 		return object;
 	}
 
@@ -22,17 +24,12 @@ public class RestUtils {
 	}
 
 	public static <T extends DefaultEntity> Response recursoCriado(Class<?> resource, T entity) {
-		return Response.created( UriBuilder.fromResource(resource)
-								.path(String.valueOf(entity.getId())).build())
-								.entity(entity)
-								.build();
+		return Response.created(UriBuilder.fromResource(resource).path(String.valueOf(entity.getId())).build())
+				.entity(entity).build();
 	}
-	
+
 	public static Response recursoCriado(Class<?> resource, Long id) {
-		return Response.created( UriBuilder.fromResource(resource)
-				.path(String.valueOf(id)).build())
-				.build();
+		return Response.created(UriBuilder.fromResource(resource).path(String.valueOf(id)).build()).build();
 	}
-	
-	
+
 }

@@ -11,5 +11,6 @@ Para entender a aplicação, olhe o resumo dos métodos REST abaixo, com os devi
 Método 	  | URI											              | Retorno 
 :-----:	  | :-------------------------------------| :------------------
 GET		    | /api/obras?pagina={pg}              |  Status 200 e um JSON com uma lista Obras Paginadas. O retorno será uma lista com até 30 obras, o parametro passado **pg** referencia a que página se deseja obter a obra. Exemplo: `/api/obras?pagina=2` teremos as 30 obras da página 2. Caso não encontro nenhuma obra seu retorno será 404.
-GET		    | /api/obras/{id}                    |  Status 200 e um JSON com uma Obra com determinado id. 404 caso não encontre nada
+GET		    | /api/obras/{id}                    |  Paramatros: **id** (Long). Retorna status 200 e um JSON com uma Obra com determinado id (Long). 404 caso não encontre nada
+POST		| /api/obras/{id}?util={util}         |  Paramatros: **id** (Long), **util** (Bollean), Retorna status 200 e 404 caso não encontre nada
 GET		    | /api/obras/cidade/{id}             |  Status 200 e um JSON com uma lista de Obras de uma determinada cidade passada no parametro **id**. 404 caso não encontre nada
