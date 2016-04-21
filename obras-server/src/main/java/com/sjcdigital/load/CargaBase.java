@@ -1,8 +1,9 @@
 package com.sjcdigital.load;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,71 +24,69 @@ import com.sjcdigital.model.repositories.impl.Cidades;
 @Startup
 @Singleton
 public class CargaBase {
-	
+
 	private final String ARQUIVO_BASE_DADOS = "/csv/obras-publicas.csv";
 	private Map<String, Cidade> cidadesEObras = new LinkedHashMap<>();
-	
+
 	@Inject
 	private Logger logger;
-	
+
 	@Inject
 	private Cidades cidades;
-	
+
 	@PostConstruct
 	public void carregaDados() {
-		
-		//TODO: Melhorar isso depois
-		if(cidades.todos().size() > 0) {
+
+		// TODO: Melhorar isso depois
+		if (cidades.todos().size() > 0) {
 			return;
 		}
-		
+
 		logger.info("Iniciando carga ...");
-		
+
 		try {
-			
+
 			List<?> linhas = pegaLinhasDoCSV();
 			logger.info("Processando: " + linhas.size() + " obras no CSV");
-			
-			linhas.subList(1, linhas.size())
-				  .forEach(this::montaCidade);
-			
-			cidadesEObras.values()
-						 .forEach(cidades :: novo);
-			
+
+			linhas.subList(1, linhas.size()).forEach(this::montaCidade);
+
+			cidadesEObras.values().forEach(cidades::novo);
+
 		} catch (IOException e) {
 			e.printStackTrace();
 			logger.log(Level.SEVERE, "Erro ao processar CSV");
 		}
-		
+
 	}
-	
+
 	protected void montaCidade(Object objeto) {
 		String[] linha = (String[]) objeto;
 		String cidadeNome = linha[0];
-		
-		if(cidadesEObras.containsKey(cidadeNome)) {
+
+		if (cidadesEObras.containsKey(cidadeNome)) {
 			Cidade cidade = cidadesEObras.get(cidadeNome);
 			cidade.getObras().add(montaObra(linha, cidade));
-			
+
 		} else {
 			Cidade cidade = new Cidade();
-			
+
 			List<Obra> obras = new LinkedList<>();
 			obras.add(montaObra(linha, cidade));
-			
+
 			cidade.setNome(cidadeNome);
 			cidade.setObras(obras);
-			
+
 			cidadesEObras.put(cidadeNome, cidade);
-			
+
 		}
-		
+
 	}
-	
+
 	protected Obra montaObra(String[] linha, Cidade cidade) {
-		
+
 		Obra obra = new Obra();
-		
+
 		obra.setCidade(cidade);
 		obra.setExercicio(linha[1].trim());
 		obra.setSemestre(linha[2].trim());
@@ -110,20 +109,19 @@ public class CargaBase {
 		obra.setSituacaoObra(linha[19].trim());
 		obra.setDataRecebimentoDefinitivo(linha[20].trim());
 		obra.setNomeServidorResponsavel(linha[21].trim());
-		
+
 		return obra;
 	}
-	
+
 	@SuppressWarnings("resource")
-	protected List<?> pegaLinhasDoCSV() throws FileNotFoundException, IOException {
-		
-		String path = this.getClass().getResource(ARQUIVO_BASE_DADOS).getPath();
-		
-		logger.info("Pegando CSV do Path: " + path);
-		
-		CSVReader csvReader = new CSVReader(new FileReader(path), ';');
+	protected List<?> pegaLinhasDoCSV() throws IOException {
+
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(ARQUIVO_BASE_DADOS);
+		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+		CSVReader csvReader = new CSVReader(reader, ';');
 		List<String[]> csvValues = csvReader.readAll();
-		
+
 		return csvValues;
 	}
 
