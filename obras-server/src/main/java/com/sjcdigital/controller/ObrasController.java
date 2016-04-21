@@ -37,18 +37,30 @@ public class ObrasController {
 		return Response.ok(RestUtils.lanca404SeNulo(obras.comId(id), id)).build();
 	}
 
-	@GET
-	@Path("/cidade/{id}")
-	public Response porCidade(@PathParam("id") Long id) {
-		return Response.ok(RestUtils.lanca404SeNulo(obras.obrasDaCidade(id), "Nenhuma obra encontrada")).build();
-	}
-
 	@POST
 	@Path("/{id}")
 	public Response vota(@PathParam("id") Long id, @QueryParam("util") Boolean util) {
 		obraService.vota(RestUtils.lanca404SeNulo(obras.comId(id), id), util);
 		return Response.ok().build();
 
+	}
+
+	@GET
+	@Path("/cidade/{id}")
+	public Response porCidade(@PathParam("id") Long id) {
+		return Response.ok(RestUtils.lanca404SeNulo(obras.obrasDaCidade(id), "Nenhuma obra encontrada")).build();
+	}
+	
+	@GET
+	@Path("/cidade/{id}/cinco-mais")
+	public Response cincoMais(@PathParam("id") Long id) {
+		return Response.ok(RestUtils.lanca404SeNulo(obras.cincoMelhoresOuPiores(id, true), "Nenhuma obra encontrada")).build();
+	}
+	
+	@GET
+	@Path("/cidade/{id}/cinco-menos")
+	public Response cincoMenos(@PathParam("id") Long id) {
+		return Response.ok(RestUtils.lanca404SeNulo(obras.cincoMelhoresOuPiores(id, false), "Nenhuma obra encontrada")).build();
 	}
 
 }
