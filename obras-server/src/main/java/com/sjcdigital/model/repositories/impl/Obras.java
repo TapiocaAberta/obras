@@ -23,8 +23,9 @@ public class Obras extends DefaultRepository<Obra> {
 
 		String obraUtil = util ? "obraUtil" : "obraInutil";
 		
-		TypedQuery<Obra> query = em.createQuery("SELECT o FROM Obra o WHERE o.cidade.id = :id ORDER BY " + obraUtil + " DESC LIMIT 5", Obra.class);
+		TypedQuery<Obra> query = em.createQuery("SELECT o FROM Obra o WHERE o.cidade.id = :id ORDER BY " + obraUtil + " DESC", Obra.class);
 		query.setParameter("id", id);
+		query.setMaxResults(5);
 
 		return query.getResultList();
 	}
