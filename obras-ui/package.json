@@ -3,7 +3,14 @@
   "version": "0.1.0",
   "dependencies": {},
   "scripts": {
-    "test": "gulp test"
+    "test": "./node_modules/.bin/gulp test",
+    "build": "./node_modules/.bin/gulp",
+    "serve":"./node_modules/.bin/gulp serve",
+    "serve:dist":"./node_modules/.bin/gulp serve:dist",
+    "test":"./node_modules/.bin/gulp test",
+    "test:auto":"./node_modules/.bin/gulp teste:auto",
+    "protractor":"./node_modules/.bin/gulp protractor",
+    "protractor:dist":"./node_modules/.bin/gulp protractor:dist"
   },
   "devDependencies": {
     "estraverse": "~4.1.0",
