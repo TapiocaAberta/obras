@@ -24,7 +24,52 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div ui-view></div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span> <span
+                        class="icon-bar"></span> <span class="icon-bar"></span> <span
+                        class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Obras SP</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a class="page-scroll" href="#funcionamento">Como Funciona?</a></li>
+                    <li><a class="page-scroll" href="#sobre">Sobre</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Intro Section -->
+    <section id="intro" class="intro-section" style="padding-top: 60px;">
+        <div class="container">
+
+            <div class="page-header">
+                <h1>Obras do Estado de São Paulo
+                    <small>Utilizando os 
+                        <a href="http://transparencia.tce.sp.gov.br/obras-publicas"> 
+                            dados do TCE
+                        </a>
+                    </small>
+                </h1>
+            </div>
+
+            <div class="row" ui-view>
+
+            </div>
+        </div>
+    </section>
+
+   
 
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->

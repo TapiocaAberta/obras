@@ -1,22 +1,13 @@
-/* global malarkey:false, moment:false */
 
-import { config } from './index.config';
 import { routerConfig } from './index.route';
-import { runBlock } from './index.run';
 import { MainController } from './main/main.controller';
-import { GithubContributorService } from '../app/components/githubContributor/githubContributor.service';
-import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service';
-import { NavbarDirective } from '../app/components/navbar/navbar.directive';
-import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
+import { CidadeService } from '../app/cidade/cidade.service';
+import { ObraService } from '../app/obra/obra.service';
 
-angular.module('obrasUi', ['ngResource', 'ui.router', 'ui.bootstrap', 'toastr'])
-  .constant('malarkey', malarkey)
-  .constant('moment', moment)
-  .config(config)
+angular.module('obrasUi', ['ngResource', 'ui.router', 'ui.bootstrap', 'ui.select', 'ngSanitize'])
   .config(routerConfig)
-  .run(runBlock)
-  .service('githubContributor', GithubContributorService)
-  .service('webDevTec', WebDevTecService)
-  .controller('MainController', MainController)
-  .directive('acmeNavbar', NavbarDirective)
-  .directive('acmeMalarkey', MalarkeyDirective);
+  .constant('config', {uri: 'http://obras-trysoft.rhcloud.com/api/'})
+  //.constant('config', {uri: 'http://localhost:8080/obras-server/api/'})
+  .service('cidadeService', CidadeService)
+  .service('obraService', ObraService)
+  .controller('MainController', MainController);

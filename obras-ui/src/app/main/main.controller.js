@@ -1,32 +1,20 @@
 export class MainController {
-  constructor ($timeout, webDevTec, toastr) {
+  constructor (cidadeService, obraService, $log) {
+
     'ngInject';
 
-    this.awesomeThings = [];
-    this.classAnimation = '';
-    this.creationDate = 1460726109027;
-    this.toastr = toastr;
+    this.obraService = obraService;
+    
+    cidadeService.pegaTodasCidades()
+      .success( result => this.cidades = result )
+      .error( error => { $log.error(error); } );
 
-    this.activate($timeout, webDevTec);
   }
 
-  activate($timeout, webDevTec) {
-    this.getWebDevTec(webDevTec);
-    $timeout(() => {
-      this.classAnimation = 'rubberBand';
-    }, 4000);
+  buscaPorCidade() {
+    this.obraService.pegaCincoPiores(this.cidade.id)
+      .success( result => this.cincoPiores = result)
+      .error( error => { $log.error(error); } );
   }
 
-  getWebDevTec(webDevTec) {
-    this.awesomeThings = webDevTec.getTec();
-
-    angular.forEach(this.awesomeThings, (awesomeThing) => {
-      awesomeThing.rank = Math.random();
-    });
-  }
-
-  showToastr() {
-    this.toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
-    this.classAnimation = '';
-  }
 }
