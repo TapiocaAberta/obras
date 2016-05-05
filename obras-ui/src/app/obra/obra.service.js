@@ -11,4 +11,9 @@ export class ObraService {
 		return this.$http.get(uriCincoPiores);
 	}
 
+	pegaCincoMelhores(idCidade) {
+		let uriCincoMelhores = `${this.uriObras}/cidade/${idCidade}/cinco-mais`;
+		return this.$http.get(uriCincoMelhores);
+	}
+
 }
