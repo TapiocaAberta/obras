@@ -6,6 +6,10 @@ export class ObraService {
 		this.uriObras = `${config.uri}obras`;
 	}
 
+	pegaPorID(idObra) {
+		return this.$http.get(`${this.uriObras}/${idObra}`);
+	}
+
 	pegaCincoPiores(idCidade) {
 		let uriCincoPiores = `${this.uriObras}/cidade/${idCidade}/cinco-menos`;
 		return this.$http.get(uriCincoPiores);

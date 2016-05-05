@@ -11,17 +11,38 @@ export class MainController {
 
   }
 
-  buscaPorCidade() {
+  buscar() {
 
-    console.log(this.pioresOuMelhores);
+    if (this.pioresOuMelhores === "todas") {
+      this.buscarTodas();
+
+    } else if (this.pioresOuMelhores === "melhores") {
+      this.buscarCincoMelhores();
+
+    } else if (this.pioresOuMelhores === "piores") {
+      this.buscarCincoPiores();
+
+    }
+  }
+
+  buscarTodas() {
+    console.log("Busca as todas obras");
+  }
+
+  buscarCincoPiores() {
 
     this.obraService.pegaCincoPiores(this.cidade.id)
-      .success( result => this.cincoPiores = result)
+      .success( result => this.obras = result)
       .error( error => { $log.error(error); } );
 
+  }
+
+  buscarCincoMelhores() {
+
     this.obraService.pegaCincoMelhores(this.cidade.id)
-      .success( result => this.cincoMelhores = result)
+      .success( result => this.obras = result)
       .error( error => { $log.error(error); } );
+
   }
 
 }

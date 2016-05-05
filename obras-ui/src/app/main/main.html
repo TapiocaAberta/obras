@@ -2,6 +2,14 @@
 <form class="form-inline">
 
   <div class="form-group">
+    <select class="form-control" 
+            ng-options="cidade as cidade.nome for cidade in main.cidades track by cidade.id" 
+            ng-model="main.cidade">
+    </select>
+  </div>
+
+  <!--
+  <div class="form-group">
     <ui-select ng-model="vm.cidade" theme="bootstrap" 
                style="width: 300px;" 
                title="Escolha uma cidade" 
@@ -15,10 +23,11 @@
       </ui-select-choices>
 
     </ui-select>
-
   </div>
+  -->
+
   <div class="form-group">
-    <select class="form-control" ng-model="vm.pioresOuMelhores" ng-init="vm.pioresOuMelhores = 'todas'">
+    <select class="form-control" ng-model="main.pioresOuMelhores" ng-init="main.pioresOuMelhores = 'todas'">
       <option value="todas">Todas</option>
       <option value="melhores">5 Melhores</option>
       <option value="piores">5 Piores</option>
@@ -26,7 +35,7 @@
   </div>
 
 
-  <button type="submit" ng-click="vm.buscaPorCidade()" class="btn btn-default" ng-disabled = "!vm.cidade">
+  <button type="submit" ng-click="main.buscar()" class="btn btn-default" ng-disabled = "!main.cidade">
     Buscar
     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
   </button>
@@ -39,14 +48,14 @@
   <div class="col-md-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">5 Piores Obras</h3>
+        <h3 class="panel-title">Obras</h3>
       </div>
       <div class="panel-body">
 
       <table class="table table-hover">
-        <caption>{{vm.cidade.nome}}</caption>
         <thead> 
-          <tr> 
+          <tr>
+            <th>Cidade</th>
             <th>Destinação da Obra</th> 
             <th>Nome da Empresa Contratada</th> 
             <th>Data Início da Obra</th>
@@ -54,47 +63,14 @@
             <th>Detalhar</th> 
           </tr> 
         </thead> 
-        <tbody ng-repeat="piorObra in vm.cincoPiores"> 
-          <tr> 
-            <td>{{piorObra.destinacaoObra}}</td> 
-            <td>{{piorObra.nomeEmpresaContratada}}</td> 
-            <td>{{piorObra.dataInicioObra}}</td> 
-            <td>{{piorObra.valorTotalContratado}}</td> 
-            <td><a href="">Detalhar</a></td>    
-          </tr> 
-        </tbody> 
-      </table>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">5 Melhores Obras</h3>
-      </div>
-      <div class="panel-body">
-
-      <table class="table table-hover">
-        <caption>{{vm.cidade.nome}}</caption>
-        <thead> 
-          <tr> 
-            <th>Destinação da Obra</th> 
-            <th>Nome da Empresa Contratada</th> 
-            <th>Data Início da Obra</th>
-            <th>Valor Pago</th>
-            <th>Detalhar</th> 
-          </tr> 
-        </thead> 
-        <tbody ng-repeat="piorObra in vm.cincoMelhores"> 
-          <tr> 
-            <td>{{piorObra.destinacaoObra}}</td> 
-            <td>{{piorObra.nomeEmpresaContratada}}</td> 
-            <td>{{piorObra.dataInicioObra}}</td> 
-            <td>{{piorObra.valorTotalContratado}}</td> 
-            <td><a href="">Detalhar</a></td>    
+        <tbody ng-repeat="obra in main.obras"> 
+          <tr>
+            <td>{{obra.cidade.nome}}</td>
+            <td>{{obra.destinacaoObra}}</td> 
+            <td>{{obra.nomeEmpresaContratada}}</td> 
+            <td>{{obra.dataInicioObra}}</td> 
+            <td>{{obra.valorTotalContratado}}</td> 
+            <td><a href="#">Detalhar</a></td>    
           </tr> 
         </tbody> 
       </table>
