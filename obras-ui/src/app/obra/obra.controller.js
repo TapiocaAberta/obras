@@ -1,13 +1,11 @@
 export class ObraController {
 
 
-  constructor ($log, $routeParams, obraService) {
+  constructor ($log, $stateParams, obraService) {
 
     'ngInject';
 
-    this.$routeParams = $routeParams;
-
-    obraService.pegaPorID($routeParams.id)
+    obraService.pegaPorID($stateParams.id)
       .success( result => this.obra = result)
       .error( error => { $log.error(error); } );
   }
