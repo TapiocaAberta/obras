@@ -1,5 +1,10 @@
 <div class="row">
   <div class="col-md-12">
+
+    {{detalhada.voto}}
+
+      <uib-alert type="success" close="detalhada.close()" ng-hide="!detalhada.votoComSucesso" >{{detalhada.votoComSucesso}}</uib-alert>
+
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">
@@ -8,13 +13,60 @@
       </div>
       <div class="panel-body">
 
+      <span class="help-block text-justify">
+        As Prefeituras Municipais enviam a planilha de obras em execução até o dia 30 (trinta) do mês subsequente ao encerramento do semestre, reunindo informações dos órgãos da Administração Direta e Indireta municipais conforme Instrução nº 2/2008 em seu artigo 42. Eventuais informações faltantes serão inseridas oportunamente, após notificação do órgão pelo TCESP. 
+        <a href="http://transparencia.tce.sp.gov.br/obras-publicas-detalhe/17147#sthash.QsQP1Z10.dpuf">
+          Veja mais.
+        </a>
+      </span>
+
+      <small>
+         <strong> Última Posição: Exercício de {{detalhada.obra.exercicio}} - {{detalhada.obra.semestre}}º Semestre </strong>
+         <br>
+         <strong> Data Base da Informação: 30/06/2015 </strong>
+      </small>
+
+      <div class="row" style="padding-top: 30px">
+        <div class="col-md-6">
+
+          <p> <strong> Município: </strong> {{detalhada.obra.cidade.nome}} </p>
+          <p> <strong> Exercício: </strong> {{detalhada.obra.exercicio}} </p>
+          <p> <strong> Função de Governo: </strong> {{detalhada.obra.funcaoDeGoverno}} </p>
+          <p> <strong> Órgão Contratante: </strong> {{detalhada.obra.orgaoContratante}} </p>
+          <p> <strong> Denominação/Destinação da Obra: </strong> {{detalhada.obra.destinacaoObra}} </p>
+          <p> <strong> Endereço da Obra: </strong> {{detalhada.obra.enderecoObra}} </p>
+          <p> <strong> PPA (previsão): </strong> {{detalhada.obra.pPA}} </p>
+          <p> <strong> LDO (previsão): </strong> {{detalhada.obra.lDO}} </p>
+          <p> <strong> Meta Física Anual/Atendimento da População: </strong> {{detalhada.obra.atendimentoPopulacao}} </p>
+          <p> <strong> Valor Inicial Previsto: </strong> {{detalhada.obra.valorInicialPrevisto}} </p>
+          <p> <strong> Valor Total Contratado: </strong> {{detalhada.obra.valorTotalContratado}} </p>
+        </div>
+        <div class="col-md-6">
+
+          <p> <strong> Nome da Empresa Contratada: </strong> {{detalhada.obra.nomeEmpresaContratada}} </p>
+          <p> <strong> Data de Início da Obra: </strong> {{detalhada.obra.dataInicioObra}} </p>
+          <p> <strong> V. Total dos Termos Aditivos: </strong> {{detalhada.obra.valorTotalTermosAditivos}} </p>
+          <p> <strong> Reajuste/Revisão do Contrato em %: </strong> {{detalhada.obra.reajuste}} </p>
+          <p> <strong> Nível de Execução Física: </strong> {{detalhada.obra.nivelExecucaoFisica}} </p>
+          <p> <strong> Valor Total Pago: </strong> {{detalhada.obra.valorTotalPago}} </p>
+          <p> <strong> Data Prevista para Conclusão: </strong> {{detalhada.obra.dataPrevistaConclusao}} </p>
+          <p> <strong> Situação da Obra: </strong> {{detalhada.obra.situacaoObra}} </p>
+          <p> <strong> Data do Recebimento Definitivo: </strong> {{detalhada.obra.dataRecebimentoDefinitivo}} </p>
+          <p> <strong> Nome do Servidor Responsável: </strong> {{detalhada.obra.nomeServidorResponsavel}} </p>
+          <p> <strong> Observações: </strong> {{detalhada.obra.observacao}} </p>
+
+        </div>
+      </div>
+
       </div>
       <div class="panel-footer">
-      	<button type="button" class="btn btn-success">
-      		Útil
+      	<button type="button" class="btn btn-success" ng-click="detalhada.votar()">
+         <span class="badge">{{detalhada.obra.obraUtil}}</span>
+          Útil
       		<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
       	</button>
-      	<button type="button" class="btn btn-danger">
+      	<button type="button" class="btn btn-danger" ng-click="detalhada.votar(false)">
+          <span class="badge">{{detalhada.obra.obraInutil}}</span>
       		Inútil
       		<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
       	</button>

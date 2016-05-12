@@ -20,4 +20,9 @@ export class ObraService {
 		return this.$http.get(uriCincoMelhores);
 	}
 
+	votar(idObra, obraUtil = true) {
+		let uriVotacao = `${this.uriObras}/${idObra}?util=${obraUtil}`;
+		return this.$http.post(uriVotacao);
+	}
+
 }
