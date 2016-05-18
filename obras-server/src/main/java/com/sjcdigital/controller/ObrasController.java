@@ -28,7 +28,13 @@ public class ObrasController {
 	@GET
 	@Path("/")
 	public Response todas(@QueryParam("pagina") int pg) {
-		return Response.ok(RestUtils.lanca404SeNulo(obras.todosPaginado(30, pg), "Nenhuma obra encontrada")).build();
+		return Response.ok(RestUtils.lanca404SeNulo(obras.todosPaginado(10, pg), "Nenhuma obra encontrada")).build();
+	}
+	
+	@GET
+	@Path("/quantidade")
+	public Response contaTodos() {
+		return Response.ok(RestUtils.lanca404SeNulo(obras.contaTodos(), "Nenhuma obra encontrada")).build();
 	}
 
 	@GET

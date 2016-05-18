@@ -25,4 +25,19 @@ export class ObraService {
 		return this.$http.post(uriVotacao);
 	}
 
+	quantidade() {
+		let uriQuantidade = `${this.uriObras}/quantidade`;
+		return this.$http.get(uriQuantidade);
+	}
+
+	paginado(pg = 1) {
+		let uriPaginado = `${this.uriObras}/?pagina=${pg}`;
+		return this.$http.get(uriPaginado);
+	}
+
+	todasDaCidade(idCidade) {
+		let uriTodasDaCidade = `${this.uriObras}/cidade/${idCidade}`;
+		return this.$http.get(uriTodasDaCidade);
+	}
+
 }

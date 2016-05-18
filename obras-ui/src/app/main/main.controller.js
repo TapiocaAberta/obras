@@ -3,18 +3,28 @@ export class MainController {
 
     'ngInject';
 
+    this.tipoBusca = "todasObras";
     this.obraService = obraService;
 
     cidadeService.pegaTodasCidades()
-      .success( result => this.cidades = result )
+      .success(result => {
+        this.cidades = result;
+        this.cidade = result[0];
+      })
       .error( error => { $log.error(error); } );
+
+    obraService.quantidade()
+      .success( result => this.quantidade = result )
+      .error( error => { $log.error(error); } );
+
+    this.buscaPorPagina();
 
   }
 
   buscar() {
 
     if (this.pioresOuMelhores === "todas") {
-      this.buscarTodas();
+      this.buscaPorCidade();
 
     } else if (this.pioresOuMelhores === "melhores") {
       this.buscarCincoMelhores();
@@ -25,8 +35,18 @@ export class MainController {
     }
   }
 
-  buscarTodas() {
-    console.log("Busca as todas obras");
+  buscaPorPagina() {
+
+    this.obraService.paginado(this.paginaCorrente)
+      .success( result => this.obras = result)
+      .error( error => { $log.error(error); } );
+
+  }
+
+  buscaPorCidade() {
+    this.obraService.todasDaCidade(this.cidade.id)
+      .success( result => this.obras = result)
+      .error( error => { $log.error(error); } );
   }
 
   buscarCincoPiores() {

@@ -1,5 +1,32 @@
 
+<h4>Buscar: </h4>
 <form class="form-inline">
+
+<div class="form-group">
+
+    <div class="checkbox">
+      <label>
+        <input type="radio" name="tipoBusca" id="todasObras" value="todasObras" ng-model="main.tipoBusca" 
+               ng-click="main.buscaPorPagina()">
+        Todas
+      </label>
+    </div>
+
+    <div class="checkbox">
+      <label>
+        <input type="radio" name="tipoBusca" id="porCidade" value="porCidade" ng-model="main.tipoBusca"
+               ng-click="main.buscaPorCidade()">
+        Por cidade
+      </label>
+    </div>
+
+  </div>
+
+</form>
+
+<br>
+
+<form class="form-inline" ng-show="main.tipoBusca === 'porCidade'">
 
   <div class="form-group">
     <select class="form-control" 
@@ -33,7 +60,6 @@
       <option value="piores">5 Piores</option>
     </select>  
   </div>
-
 
   <button type="submit" ng-click="main.buscar()" class="btn btn-default" ng-disabled = "!main.cidade">
     Buscar
@@ -74,6 +100,17 @@
           </tr> 
         </tbody> 
       </table>
+
+      <uib-pagination ng-show="main.tipoBusca === 'todasObras'"
+                      ng-model="main.paginaCorrente"
+                      ng-change="main.buscaPorPagina()"
+                      total-items="main.quantidade" 
+                      max-size="10" 
+                      class="pagination-sm" 
+                      boundary-links="true" 
+                      force-ellipses="true">
+      </uib-pagination>
+
       </div>
     </div>
   </div>
