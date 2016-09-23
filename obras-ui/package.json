@@ -1,16 +1,18 @@
 {
   "name": "Obras",
   "version": "0.1.0",
-  "dependencies": {},
+  "dependencies": {
+    "gulp-gh-pages": "^0.5.4"
+  },
   "scripts": {
     "test": "./node_modules/.bin/gulp test",
     "build": "./node_modules/.bin/gulp",
-    "serve":"./node_modules/.bin/gulp serve",
-    "serve:dist":"./node_modules/.bin/gulp serve:dist",
-    "test":"./node_modules/.bin/gulp test",
-    "test:auto":"./node_modules/.bin/gulp teste:auto",
-    "protractor":"./node_modules/.bin/gulp protractor",
-    "protractor:dist":"./node_modules/.bin/gulp protractor:dist"
+    "deploy": "./node_modules/.bin/gulp deploy",
+    "serve": "./node_modules/.bin/gulp serve",
+    "serve:dist": "./node_modules/.bin/gulp serve:dist",
+    "test:auto": "./node_modules/.bin/gulp teste:auto",
+    "protractor": "./node_modules/.bin/gulp protractor",
+    "protractor:dist": "./node_modules/.bin/gulp protractor:dist"
   },
   "devDependencies": {
     "estraverse": "~4.1.0",
